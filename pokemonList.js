@@ -1,6 +1,6 @@
 const getPokemon = "https://pokeapi.co/api/v2/pokemon?limit=151";
-const dropDown = document.getElementById('pokelist');
-const addEle = document.createElement('option');
+let dropDown = document.getElementById('pokelist');
+let addEle = document.createElement('option');
 function ogPokemon() {
     fetch (getPokemon)
         .then ( response =>
@@ -25,6 +25,8 @@ function ogPokemon() {
         }
         );
 };
-
+function kantoPokedex(pokeData) {
+    let 
+}
 ogPokemon();
 //createDropdown();
