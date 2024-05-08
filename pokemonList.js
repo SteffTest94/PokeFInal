@@ -1,31 +1,30 @@
 const getPokemon = "https://pokeapi.co/api/v2/pokemon?limit=151";
-//allPokeContainer = ogPokemon;
-dropDown = document.getElementById('pokelist')
-//const dropName = document.createElement("option");
+const dropDown = document.getElementById('pokelist');
+const addEle = document.createElement('option');
 function ogPokemon() {
     fetch (getPokemon)
         .then ( response =>
             response.json()
         )
         .then (function (allpokemon){
-            //const pokeName = allpokemon.name
+            pokeName = ""
             allpokemon.results.forEach(
                 function fetchPokemonData(pokemon) {
                     let url = pokemon.url
+                    let pokeName = pokemon.name
                     fetch(url)
                     .then(response => response.json())
                     .then (function (pokeData){
-                        
+                        console.log(pokeData)
+                        addEle.text = pokeName;
+                        dropDown.add(addEle);
                     })
-            }
-        )
+                    
+                }
+                ) 
         }
         );
 };
-//function createDropdown () {
- //   
-  //  .createElement('option')
-  //  .add(allPokeContainer.name, null)
-//}
-//createDropdown();
+
 ogPokemon();
+//createDropdown();
