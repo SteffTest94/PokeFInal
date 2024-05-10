@@ -12,12 +12,12 @@ function createDropdown () {
                 name: pokemon.name
                 }
             )
-    for (i in allpokemon.results) {
+    for (i = 0; i < allpokemon.results.length; i++) {
     addEle.text = allpokemon.results[i].name
     addEle.value = +i
     dropDown.add(addEle)
     console.log(addEle)
-    console.log(allpokemon.results[i])
+    console.log(allpokemon.results.length)
     }
     }
     );
