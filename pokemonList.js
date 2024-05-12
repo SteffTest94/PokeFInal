@@ -11,12 +11,12 @@ let generateBtn = document.querySelector('#generate-pokemon')
 dropDown.addEventListener('select', selectOption)
 
 function selectOption () {
-    chosenOption = e.targets.options.getElementById('');
+    chosenOption = getSelection()
     if (chosenOption != 'Select') {
-        
+        renderSinglePokemon()
     } else {
-
     }
+
 
 }
     generateBtn.addEventListener('click', renderEverything)
@@ -27,6 +27,13 @@ function renderEverything(){
     allPokemonContainer.innerText = "";
     fetchPokemon();
 }
+function renderSinglePokemon() {
+    let allPokemonContainer = document.querySelector('#poke-container')
+    allPokemonContainer.innerText = ""
+    fetchPokemon()
+    console.log(allPokemonContainer.innerText)
+}
+
 function fetchPokemon(){
     fetch(getPokemon)
     .then(response => response.json())
@@ -38,6 +45,13 @@ function fetchPokemon(){
             console.log(addEle)
             fetchPokemonData(pokemon);
         })
+    .then(function(singlepokemon){
+        let findPokemon = getSelection()
+        let foundPokemon = singlepokemon.results.filter((results) =>
+            singlepokemon.name = findPokemon
+        )
+        fetchPokemonData(foundPokemon)
+    })
     })
 }
 
@@ -84,7 +98,7 @@ function createDropdown () {
             addEle.text = pokemon.name
             addEle.value = 'pokemon'
             dropDown.append(addEle)
-            console.log(addEle)
+            //console.log(addEle)
         })
     })
 }
