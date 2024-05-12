@@ -2,6 +2,7 @@ const getPokemon = "https://pokeapi.co/api/v2/pokemon?limit=151";
 const dropDown = document.querySelector('#pokelist');
 const addEle = document.createElement('option');
 const selector = document.getElementById('pokemon');
+const selector = document.getElementById('pokemon');
 function createDropdown () {
 
     fetch (getPokemon)
