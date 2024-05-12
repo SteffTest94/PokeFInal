@@ -7,8 +7,20 @@ const selector = document.getElementById('pokemon');
 
 document.addEventListener("DOMContentLoaded", () =>{
 let allPokemonContainer = document.querySelector('#poke-container')
-let generateBtn = document.querySelector('#generate-pokemon');
+let generateBtn = document.querySelector('#generate-pokemon')
+dropDown.addEventListener('select', selectOption)
+
+function selectOption () {
+    chosenOption = e.targets.options.getElementById('');
+    if (chosenOption != 'Select') {
+        
+    } else {
+
+    }
+
+}
     generateBtn.addEventListener('click', renderEverything)
+
 
 function renderEverything(){
     let allPokemonContainer = document.querySelector('#poke-container')
@@ -65,6 +77,16 @@ function createTypes(types, ul){
 
 
 function createDropdown () {
+    fetch(getPokemon)
+    .then(response => response.json())
+    .then(function(allpokemon){
+        allpokemon.results.forEach(function(pokemon){
+            addEle.text = pokemon.name
+            addEle.value = 'pokemon'
+            dropDown.append(addEle)
+            console.log(addEle)
+        })
+    })
 }
 createDropdown()
 })
