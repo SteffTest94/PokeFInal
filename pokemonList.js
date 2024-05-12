@@ -1,25 +1,20 @@
 const getPokemon = "https://pokeapi.co/api/v2/pokemon?limit=151";
-const dropDown = document.getElementById('pokelist');
+const dropDown = document.querySelector('#pokelist');
 const addEle = document.createElement('option');
+const selector = document.getElementById('pokemon');
 function createDropdown () {
+
     fetch (getPokemon)
     .then ( response =>
         response.json()
     )
-    .then (function (allpokemon){
-        allpokemon.results.forEach(
-            function fetchPokemonData(pokemon) {
-                name: pokemon.name
-                }
-            )
-    for (i = 0; i < allpokemon.results.length; i++) {
-    addEle.text = allpokemon.results[i].name
-    addEle.value = 'pokemon'
-    dropDown.add(addEle)
-    console.log(addEle)
-    console.log(allpokemon.results[i])
-    console.log(allpokemon.results.length)
-    }
-});
+    .then(function(allpokemon){
+        allpokemon.results.forEach(function(pokemon){
+            addEle.text = pokemon.name
+            addEle.value = 'pokemon'
+            dropDown.append(addEle)
+            console.log(addEle);
+        })
+    })
 };
 createDropdown()
