@@ -1,15 +1,17 @@
 const getPokemon = "https://pokeapi.co/api/v2/pokemon?limit=151";
+
+//to help keep things together
+document.addEventListener("DOMContentLoaded", () =>{
+//consistent lets / backend utils
 const dropDown = document.querySelector('#pokelist');
 const addEle = document.createElement('option');
-const selector = document.getElementById('pokemon');
-
-
-
-document.addEventListener("DOMContentLoaded", () =>{
+// unnecessary for now //const selector = document.getElementById('pokemon');
 let allPokemonContainer = document.querySelector('#poke-container')
 let generateBtn = document.querySelector('#generate-pokemon')
 dropDown.addEventListener('select', selectOption)
 
+//attempt to trigger single pokemon generation on select.
+//button may be better solution
 function selectOption () {
     chosenOption = getSelection()
     if (chosenOption != 'Select') {
@@ -19,21 +21,27 @@ function selectOption () {
 
 
 }
-    generateBtn.addEventListener('click', renderEverything)
+
+//button event
+generateBtn.addEventListener('click', renderSinglePokemon)
 
 
+//sends all pokemon to index page, does not have photos
 function renderEverything(){
     let allPokemonContainer = document.querySelector('#poke-container')
     allPokemonContainer.innerText = "";
     fetchPokemon();
 }
+
+//attempt at rendering everything
 function renderSinglePokemon() {
     let allPokemonContainer = document.querySelector('#poke-container')
     allPokemonContainer.innerText = ""
-    fetchPokemon()
+    fetchLonePokemon()
     console.log(allPokemonContainer.innerText)
 }
 
+//initial fetch for all pokemon
 function fetchPokemon(){
     fetch(getPokemon)
     .then(response => response.json())
@@ -45,16 +53,26 @@ function fetchPokemon(){
             console.log(addEle)
             fetchPokemonData(pokemon);
         })
-    .then(function(singlepokemon){
-        let findPokemon = getSelection()
-        let foundPokemon = singlepokemon.results.filter((results) =>
-            singlepokemon.name = findPokemon
-        )
-        fetchPokemonData(foundPokemon)
-    })
     })
 }
+//attempt to fetch single pokemon. may switch methods?
+function fetchLonePokemon(){
+    fetch(getPokemon)
+    .then (response => response.json())
+    .then (function(singlepokemon){
+        singlepokemon.results.forEach(function(pokemon){
+        let findPokemon = getSelection()
+        let foundPokemon = singlepokemon.results.filter((singlepokemon) =>
+            singlepokemon.name = findPokemon)
+        console.log(foundPokemon)
+        fetchPokemonData(pokemon)   
+    })
 
+    fetchPokemonData(foundPokemon)
+}
+)}
+
+//fetching all pokemon data
 function fetchPokemonData(pokemon){
     let url = pokemon.url 
     fetch(url)
@@ -64,6 +82,8 @@ function fetchPokemonData(pokemon){
     })
 }
 
+//renders ALL pokemon (currently). usefull as it creates divs
+//on webpage
 function renderPokemon(pokeData){
     let allPokemonContainer = document.getElementById('poke-container');
     let pokeContainer = document.createElement("div") //div will be used to hold the data/details for indiviual pokemon.{}
@@ -81,6 +101,7 @@ function renderPokemon(pokeData){
     //appending that pokeContainer div to the main div which will                                                             hold all the pokemon cards
 }
 
+//createes sepperate type 'sheet'
 function createTypes(types, ul){
     types.forEach(function(type){
         let typeLi = document.createElement('li');
