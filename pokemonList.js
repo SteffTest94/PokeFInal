@@ -3,12 +3,30 @@ const getPokemon = "https://pokeapi.co/api/v2/pokemon?limit=151";
 //to help keep things together
 document.addEventListener("DOMContentLoaded", () =>{
 //consistent lets / backend utils
-const dropDown = document.querySelector('#pokelist');
-const addEle = document.createElement('option');
+let dropDown = document.querySelector('#pokelist');
 // unnecessary for now //const selector = document.getElementById('pokemon');
 let allPokemonContainer = document.querySelector('#poke-container')
 let generateBtn = document.querySelector('#generate-pokemon')
 dropDown.addEventListener('select', selectOption)
+
+//i have been trying to get this accursed drop down
+//to populate all week. f m l
+//i'm keeping it hidden just to immortalize my own hubris and
+//stubborn futility
+//function createDropdown () {
+ //   fetch(getPokemon)
+//    .then(response => response.json())
+//    .then(function(allpokemon){
+ //       allpokemon.results.forEach(function(pokemon){
+ //           addEle.text = pokemon.name
+ //           addEle.value = 'pokemon'
+ //           dropDown.append(addEle)
+            //console.log(addEle)
+  //      })
+ //   })
+//}
+
+
 
 //attempt to trigger single pokemon generation on select.
 //button may be better solution
@@ -79,6 +97,7 @@ function fetchPokemonData(pokemon){
     .then(response => response.json())
     .then(function(pokeData){
         renderPokemon(pokeData)
+        createDropdown(pokeData)
     })
 }
 
@@ -98,7 +117,8 @@ function renderPokemon(pokeData){
     pokeContainer.append(pokeName, pokeNumber, pokeTypes);   
     //appending all details to the pokeContainer div
     allPokemonContainer.appendChild(pokeContainer);       
-    //appending that pokeContainer div to the main div which will                                                             hold all the pokemon cards
+    //appending that pokeContainer div to the main div which will 
+    //hold all the pokemon cards
 }
 
 //createes sepperate type 'sheet'
@@ -111,17 +131,13 @@ function createTypes(types, ul){
 }
 
 
-function createDropdown () {
-    fetch(getPokemon)
-    .then(response => response.json())
-    .then(function(allpokemon){
-        allpokemon.results.forEach(function(pokemon){
-            addEle.text = pokemon.name
-            addEle.value = 'pokemon'
-            dropDown.append(addEle)
-            //console.log(addEle)
-        })
-    })
+function createDropdown (pokeData) {
+    
+    let addEle = document.createElement('option');
+    addEle.innerText = pokeData.name
+    addEle.value = 'pokemon'
+    dropDown.append(addEle)
+    console.log(addEle)
 }
 createDropdown()
 })
