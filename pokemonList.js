@@ -132,9 +132,12 @@ function createTypes(types, ul){
 function createDropdown (pokeData) {
     let allPokemonContainer = document.querySelector('#poke-container')
     let addEle = document.createElement('option');
+    JSON.stringify(pokeData.name)
+    toCapitilize = pokeData.name
+    capitilized = toCapitilize[0].toUpperCase() + toCapitilize.slice(1)
     addEle.value = 'pokemon'
     allPokemonContainer.innerText = ""
-    addEle.innerText = pokeData.name
+    addEle.innerText = capitilized
     dropDown.append(addEle)
     console.log(addEle)
 }
