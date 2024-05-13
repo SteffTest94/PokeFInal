@@ -7,6 +7,7 @@ let dropDown = document.querySelector('#pokelist');
 // unnecessary for now //const selector = document.getElementById('pokemon');
 
 dropDown.addEventListener('click', renderEverything)
+dropDown.addEventListener('select', renderSinglePokemon)
 function makeBtn() {
     let generateBtn = document.querySelector('#generate-pokemon')
 generateBtn.addEventListener('click', renderSinglePokemon)
@@ -94,8 +95,8 @@ function fetchPokemonData(pokemon){
     fetch(url)
     .then(response => response.json())
     .then(function(pokeData){
-        renderPokemon(pokeData)
         createDropdown(pokeData)
+        renderPokemon(pokeData)
     })
 }
 
