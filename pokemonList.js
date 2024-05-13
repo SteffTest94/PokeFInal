@@ -46,7 +46,7 @@ function fetchPokemon(){
     .then(response => response.json())
     .then(function(allpokemon){
         allpokemon.results.forEach(function(pokemon){
-            fetchPokemonData(pokemon);
+            fetchDropData(pokemon);
         })
     })
 }
@@ -60,36 +60,36 @@ function fetchLonePokemon(){
         let foundPokemon = singlepokemon.results.filter((singlepokemon) =>
             singlepokemon.name = findPokemon)
         console.log(foundPokemon)
-        fetchPokemonData(pokemon)   
+        fetchDropData(pokemon)   
     })
 
-    fetchPokemonData(foundPokemon)
+    fetchDropData(foundPokemon)
 }
 )}
 
 //fetching all pokemon data
-function fetchPokemonData(pokemon){
+function fetchDropData(pokemon){
     let url = pokemon.url 
     fetch(url)
     .then(response => response.json())
-    .then(function(pokeData){
-        createDropdown(pokeData)
-        renderPokemon(pokeData)
+    .then(function(dropData){
+        createDropdown(dropData)
+
     })
 }
 
 //renders ALL pokemon (currently). usefull as it creates divs
 //on webpage
-function renderPokemon(pokeData){
+function renderPokemon(dropData){
     let allPokemonContainer = document.getElementById('poke-container');
     let pokeContainer = document.createElement("div") //div will be used to hold the data/details for indiviual pokemon.{}
     let pokeName = document.createElement('h4')
-    pokeName.innerText = pokeData.name
+    pokeName.innerText = dropData.name
     let pokeNumber = document.createElement('p')
-    pokeNumber.innerText = `#${pokeData.id}`
+    pokeNumber.innerText = `#${dropData.id}`
     let pokeTypes = document.createElement('ul') 
     //ul list will hold the pokemon types
-    createTypes(pokeData.types, pokeTypes) 
+    createTypes(dropData.types, pokeTypes) 
     // helper function to go through the types array and create li tags for each one
     pokeContainer.append(pokeName, pokeNumber, pokeTypes);   
     //appending all details to the pokeContainer div
@@ -108,11 +108,11 @@ function createTypes(types, ul){
 }
 //eyyy have the dropdown working seperately!!!
 
-function createDropdown (pokeData) {
+function createDropdown (dropData) {
     let allPokemonContainer = document.querySelector('#poke-container')
     let addEle = document.createElement('option');
-    JSON.stringify(pokeData.name)
-    toCapitilize = pokeData.name
+    JSON.stringify(dropData.name)
+    toCapitilize = dropData.name
     capitilized = toCapitilize[0].toUpperCase() + toCapitilize.slice(1)
     addEle.value = 'pokemon'
     allPokemonContainer.innerText = ""
