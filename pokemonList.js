@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () =>{
 let dropDown = document.querySelector('#pokelist');
 renderEverything()
 selectPokemon = document.querySelector('#pokemon')
-dropDown.addEventListener('onchange', renderSinglePokemon)
+dropDown.addEventListener('change', renderSinglePokemon)
 
 //i have been trying to get this accursed drop down
 //to populate all week. f m l
@@ -57,13 +57,14 @@ function fetchLonePokemon(){
     .then (response => response.json())
     .then (function(singlepokemon){
         singlepokemon.results.forEach(function(pokemon){
-        let findPokemon = getSelection(selectPokemon)
+        let findPokemon = getSelection(dropDown)
         let foundPokemon = singlepokemon.results.filter((singlepokemon) =>
             singlepokemon.name == findPokemon)
         fetchPokemonData(pokemon)
         console.log(findPokemon)
     })
 }
+
 )}
 //fetchLonePokemon()
 
