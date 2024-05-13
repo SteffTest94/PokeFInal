@@ -8,10 +8,7 @@ let dropDown = document.querySelector('#pokelist');
 
 dropDown.addEventListener('click', renderEverything)
 dropDown.addEventListener('select', renderSinglePokemon)
-function makeBtn() {
-    let generateBtn = document.querySelector('#generate-pokemon')
-generateBtn.addEventListener('click', renderSinglePokemon)
-}
+
 //i have been trying to get this accursed drop down
 //to populate all week. f m l
 //i'm keeping it hidden just to immortalize my own hubris and
