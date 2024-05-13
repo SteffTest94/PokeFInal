@@ -139,6 +139,5 @@ function createDropdown (pokeData) {
     dropDown.append(addEle)
     console.log(addEle)
 }
-dropDown.addEventListener('select', makeBtn())
 
 })
