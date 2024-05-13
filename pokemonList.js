@@ -60,10 +60,9 @@ function fetchLonePokemon(){
         let foundPokemon = singlepokemon.results.filter((singlepokemon) =>
             singlepokemon.name = findPokemon)
         console.log(foundPokemon)
-        fetchDropData(pokemon)   
+        fetchPokemonData(pokemon)   
     })
-
-    fetchDropData(foundPokemon)
+    fetchPokemonData(foundPokemon)
 }
 )}
 
@@ -73,10 +72,10 @@ function fetchPokemonData(pokemon){
     fetch(url)
     .then(response => response.json())
     .then(function(pokeData){
-        createDropdown(pokeData)
-        
+        renderPokemon(pokeData)
     })
 }
+
 function fetchDropData(pokemon){
     let url = pokemon.url 
     fetch(url)
