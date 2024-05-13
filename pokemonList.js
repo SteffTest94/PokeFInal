@@ -5,10 +5,12 @@ document.addEventListener("DOMContentLoaded", () =>{
 //consistent lets / backend utils
 let dropDown = document.querySelector('#pokelist');
 // unnecessary for now //const selector = document.getElementById('pokemon');
-let allPokemonContainer = document.querySelector('#poke-container')
-let generateBtn = document.querySelector('#generate-pokemon')
-dropDown.addEventListener('click', renderSinglePokemon)
 
+dropDown.addEventListener('click', renderEverything)
+function makeBtn() {
+    let generateBtn = document.querySelector('#generate-pokemon')
+generateBtn.addEventListener('click', renderSinglePokemon)
+}
 //i have been trying to get this accursed drop down
 //to populate all week. f m l
 //i'm keeping it hidden just to immortalize my own hubris and
@@ -26,17 +28,9 @@ dropDown.addEventListener('click', renderSinglePokemon)
  //   })
 //}
 
-//eyyy have the dropdown working seperately!!!
 
-function createDropdown (pokeData) {
-    let allPokemonContainer = document.querySelector('#poke-container')
-    let addEle = document.createElement('option');
-    addEle.value = 'pokemon'
-    allPokemonContainer.innerText = ""
-    addEle.innerText = pokeData.name
-    dropDown.append(addEle)
-    console.log(addEle)
-}
+
+
 
 
 //attempt to trigger single pokemon generation on select.
@@ -133,5 +127,17 @@ function createTypes(types, ul){
         ul.append(typeLi)
     })
 }
+//eyyy have the dropdown working seperately!!!
+
+function createDropdown (pokeData) {
+    let allPokemonContainer = document.querySelector('#poke-container')
+    let addEle = document.createElement('option');
+    addEle.value = 'pokemon'
+    allPokemonContainer.innerText = ""
+    addEle.innerText = pokeData.name
+    dropDown.append(addEle)
+    console.log(addEle)
+}
+dropDown.addEventListener('select', makeBtn())
 
 })
