@@ -25,7 +25,7 @@ dropDown.addEventListener('select', renderSinglePokemon)
 //}
 
 
-//renders all pokemon text details
+
 function renderEverything(){
     let allPokemonContainer = document.querySelector('#poke-container')
     allPokemonContainer.innerText = "";
