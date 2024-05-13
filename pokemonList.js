@@ -26,6 +26,17 @@ dropDown.addEventListener('click', renderSinglePokemon)
  //   })
 //}
 
+//eyyy have the dropdown working seperately!!!
+
+function createDropdown (pokeData) {
+    let allPokemonContainer = document.querySelector('#poke-container')
+    let addEle = document.createElement('option');
+    addEle.value = 'pokemon'
+    allPokemonContainer.innerText = ""
+    addEle.innerText = pokeData.name
+    dropDown.append(addEle)
+    console.log(addEle)
+}
 
 
 //attempt to trigger single pokemon generation on select.
@@ -39,9 +50,6 @@ function selectOption () {
 
 
 }
-
-//button event
-generateBtn.addEventListener('click', renderSinglePokemon)
 
 
 //sends all pokemon to index page, does not have photos
@@ -124,16 +132,6 @@ function createTypes(types, ul){
         typeLi.innerText = type['type']['name'];
         ul.append(typeLi)
     })
-}
-
-
-function createDropdown (pokeData) {
-    
-    let addEle = document.createElement('option');
-    addEle.innerText = pokeData.name
-    addEle.value = 'pokemon'
-    dropDown.append(addEle)
-    console.log(addEle)
 }
 
 })
