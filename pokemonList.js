@@ -7,7 +7,7 @@ let dropDown = document.querySelector('#pokelist');
 // unnecessary for now //const selector = document.getElementById('pokemon');
 let allPokemonContainer = document.querySelector('#poke-container')
 let generateBtn = document.querySelector('#generate-pokemon')
-dropDown.addEventListener('select', selectOption)
+dropDown.addEventListener('click', renderSinglePokemon)
 
 //i have been trying to get this accursed drop down
 //to populate all week. f m l
@@ -65,10 +65,6 @@ function fetchPokemon(){
     .then(response => response.json())
     .then(function(allpokemon){
         allpokemon.results.forEach(function(pokemon){
-            addEle.text = pokemon.name
-            addEle.value = 'pokemon'
-            dropDown.append(addEle)
-            console.log(addEle)
             fetchPokemonData(pokemon);
         })
     })
@@ -139,5 +135,5 @@ function createDropdown (pokeData) {
     dropDown.append(addEle)
     console.log(addEle)
 }
-createDropdown()
+
 })
