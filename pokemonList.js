@@ -4,8 +4,9 @@ const getPokemon = "https://pokeapi.co/api/v2/pokemon?limit=151";
 document.addEventListener("DOMContentLoaded", () =>{
 //consistent lets / backend utils
 let dropDown = document.querySelector('#pokelist');
-dropDown.addEventListener('click', renderEverything)
-dropDown.addEventListener('select', renderSinglePokemon)
+renderEverything()
+selectPokemon = document.querySelector('#pokemon')
+dropDown.addEventListener('onchange', renderSinglePokemon)
 
 //i have been trying to get this accursed drop down
 //to populate all week. f m l
@@ -37,7 +38,7 @@ function renderSinglePokemon() {
     let allPokemonContainer = document.querySelector('#poke-container')
     allPokemonContainer.innerText = ""
     fetchLonePokemon()
-    console.log(allPokemonContainer.innerText)
+    console.log()
 }
 
 //initial fetch for all pokemon
@@ -56,15 +57,15 @@ function fetchLonePokemon(){
     .then (response => response.json())
     .then (function(singlepokemon){
         singlepokemon.results.forEach(function(pokemon){
-        let findPokemon = getSelection()
+        let findPokemon = getSelection(selectPokemon)
         let foundPokemon = singlepokemon.results.filter((singlepokemon) =>
-            singlepokemon.name = findPokemon)
-        console.log(foundPokemon)
-        fetchPokemonData(pokemon)   
+            singlepokemon.name == findPokemon)
+        fetchPokemonData(pokemon)
+        console.log(findPokemon)
     })
-    fetchPokemonData(foundPokemon)
 }
 )}
+//fetchLonePokemon()
 
 //fetching all pokemon data for renders
 function fetchPokemonData(pokemon){
@@ -126,7 +127,6 @@ function createDropdown (dropData) {
     allPokemonContainer.innerText = ""
     addEle.innerText = capitilized
     dropDown.append(addEle)
-    console.log(addEle)
 }
 
 })
