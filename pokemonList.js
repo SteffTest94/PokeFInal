@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", () =>{
 //consistent lets / backend utils
 let dropDown = document.querySelector('#pokelist');
 renderEverything()
-selectPokemon = document.querySelector('#pokemon')
+let selectPokemon = document.querySelector('#pokemon')
+
 dropDown.addEventListener('change', renderSinglePokemon)
 
 //i have been trying to get this accursed drop down
@@ -57,7 +58,7 @@ function fetchLonePokemon(){
     .then (response => response.json())
     .then (function(singlepokemon){
         singlepokemon.results.forEach(function(pokemon){
-        let findPokemon = getSelection(dropDown)
+        let findPokemon = selectPokemon
         let foundPokemon = singlepokemon.results.filter((singlepokemon) =>
             singlepokemon.name == findPokemon)
         fetchPokemonData(pokemon)
