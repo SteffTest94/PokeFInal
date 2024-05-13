@@ -4,8 +4,6 @@ const getPokemon = "https://pokeapi.co/api/v2/pokemon?limit=151";
 document.addEventListener("DOMContentLoaded", () =>{
 //consistent lets / backend utils
 let dropDown = document.querySelector('#pokelist');
-// unnecessary for now //const selector = document.getElementById('pokemon');
-
 dropDown.addEventListener('click', renderEverything)
 dropDown.addEventListener('select', renderSinglePokemon)
 
@@ -27,31 +25,14 @@ dropDown.addEventListener('select', renderSinglePokemon)
 //}
 
 
-
-
-
-
-//attempt to trigger single pokemon generation on select.
-//button may be better solution
-function selectOption () {
-    chosenOption = getSelection()
-    if (chosenOption != 'Select') {
-        renderSinglePokemon()
-    } else {
-    }
-
-
-}
-
-
-//sends all pokemon to index page, does not have photos
+//renders all pokemon text details
 function renderEverything(){
     let allPokemonContainer = document.querySelector('#poke-container')
     allPokemonContainer.innerText = "";
     fetchPokemon();
 }
 
-//attempt at rendering everything
+//attempt at rendering single pokemon
 function renderSinglePokemon() {
     let allPokemonContainer = document.querySelector('#poke-container')
     allPokemonContainer.innerText = ""
@@ -69,7 +50,7 @@ function fetchPokemon(){
         })
     })
 }
-//attempt to fetch single pokemon. may switch methods?
+//attempt to fetch single pokemon
 function fetchLonePokemon(){
     fetch(getPokemon)
     .then (response => response.json())
@@ -117,7 +98,7 @@ function renderPokemon(pokeData){
     //hold all the pokemon cards
 }
 
-//createes sepperate type 'sheet'
+//createes seperate type 'sheet'
 function createTypes(types, ul){
     types.forEach(function(type){
         let typeLi = document.createElement('li');
