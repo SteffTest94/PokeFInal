@@ -67,7 +67,16 @@ function fetchLonePokemon(){
 }
 )}
 
-//fetching all pokemon data
+//fetching all pokemon data for renders
+function fetchPokemonData(pokemon){
+    let url = pokemon.url 
+    fetch(url)
+    .then(response => response.json())
+    .then(function(pokeData){
+        createDropdown(pokeData)
+        
+    })
+}
 function fetchDropData(pokemon){
     let url = pokemon.url 
     fetch(url)
